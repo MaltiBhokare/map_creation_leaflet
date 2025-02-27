@@ -71,7 +71,7 @@ const MapComponent = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:5000/calculate-metrics", {
+      const response = await axios.post("https://map-creation-leaflet-api.vercel.app/calculate-metrics", {
         start: startLocation,
         destination,
       });
