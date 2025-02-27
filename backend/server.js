@@ -39,23 +39,18 @@
 // const PORT = 5000;
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-
-
-
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express();
-
-const corsOptions = {
-  origin: "https://portfolio-web-mern-frontend.vercel.app", // Your frontend domain
-  methods: "GET,POST,PUT,DELETE", // Allow specific HTTP methods
-  allowedHeaders: "Content-Type,Authorization", // Allow specific headers
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
+
+// Root Route
+app.get("/", (req, res) => {
+  res.send("Server is running successfully");
+});
 
 app.post("/calculate-metrics", (req, res) => {
   const { start, destination } = req.body;
@@ -73,8 +68,8 @@ app.post("/calculate-metrics", (req, res) => {
   const dLat = toRad(lat2 - lat1);
   const dLon = toRad(lon2 - lon1);
   const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c;
 
@@ -84,16 +79,5 @@ app.post("/calculate-metrics", (req, res) => {
   res.json({ area, distance });
 });
 
-app.post("/send-message", (req, res) => {
-  const { message } = req.body;
-
-  if (!message) {
-    return res.status(400).json({ error: "Message is required" });
-  }
-
-  res.json({ success: true, message: "Message received successfully", receivedMessage: message });
-});
-
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
