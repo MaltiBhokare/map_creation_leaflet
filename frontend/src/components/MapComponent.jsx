@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents, Popup, Polyline } from "react-leaflet";
+// import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
@@ -74,7 +75,7 @@ const MapComponent = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:5000/calculate-metrics", {
+      const response = await axios.post("https://map-creation-leaflet-api.vercel.app/calculate-metrics", {
         start: startLocation,
         destination,
       });

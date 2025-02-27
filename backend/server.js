@@ -44,7 +44,14 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: "https://map-creation-leaflet-frontend.vercel.app", // Your Frontend URL
+  methods: "GET,POST,PUT,DELETE", // Allowed Methods
+  allowedHeaders: "Content-Type,Authorization" // Allowed Headers
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
 // Root Route
