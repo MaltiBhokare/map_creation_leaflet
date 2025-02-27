@@ -45,7 +45,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const corsOptions = {
-  origin: "https://map-creation-leaflet-frontend.vercel.app", // Your Frontend URL
+  origin: "https://map-creation-leaflet-fkk2.vercel.app", // Your Frontend URL
   methods: "GET,POST,PUT,DELETE", // Allowed Methods
   allowedHeaders: "Content-Type,Authorization" // Allowed Headers
 };
